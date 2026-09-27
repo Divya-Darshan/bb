@@ -6,6 +6,7 @@
   <title>Binary Brains Health - Smart AI Prescription & Emergency Care</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
@@ -17,15 +18,31 @@
 
     body {
       background-color: #030712;
-      background-image: 
-        radial-gradient(circle at 50% 10%, rgba(14, 116, 144, 0.25) 0%, rgba(7, 25, 51, 0.8) 50%, rgba(3, 7, 18, 0.98) 100%);
-      background-attachment: fixed;
       color: #f8fafc;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fixed responsive logo background overlay with opacity */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: linear-gradient(to bottom, rgba(3, 7, 18, 0.75), rgba(3, 7, 18, 0.88)), url('logo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      opacity: 0.8;
+      z-index: -1;
+      pointer-events: none;
     }
 
     #app {
@@ -35,46 +52,48 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      background: rgba(3, 7, 18, 0.6);
-      border-left: 1px solid rgba(255, 255, 255, 0.05);
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(3, 7, 18, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Glassmorphism primitives */
     .glass-nav {
-      background: rgba(10, 20, 38, 0.75);
+      background: rgba(10, 20, 38, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(34, 211, 238, 0.15);
+      border-bottom: 1px solid rgba(34, 211, 238, 0.2);
     }
 
     .glass-card {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .glass-card:hover {
-      border-color: rgba(34, 211, 238, 0.3);
+      border-color: rgba(34, 211, 238, 0.4);
     }
 
     .glass-card-active {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(34, 211, 238, 0.4);
-      box-shadow: 0 0 20px rgba(34, 211, 238, 0.1);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(34, 211, 238, 0.5);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
     }
 
     .glass-dock {
-      background: rgba(10, 20, 38, 0.85);
+      background: rgba(10, 20, 38, 0.9);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    /* Custom Buttons */
+    /* Buttons */
     .btn-glow {
       background: linear-gradient(135deg, #0284c7 0%, #0891b2 100%);
       box-shadow: 0 4px 20px rgba(14, 165, 233, 0.35);
@@ -115,17 +134,16 @@
 <body>
   <div id="app">
     
-    <!-- Top Header Navigation Bar -->
+    <!-- Header Navigation Bar -->
     <header class="glass-nav sticky top-0 z-40 px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
-        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center p-1 shadow-lg shadow-cyan-500/10">
-          <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
+        <!-- Logo Image Icon using logo.jpg -->
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 overflow-hidden flex items-center justify-center p-0.5 shadow-lg shadow-cyan-500/10">
+          <img src="logo.jpg" alt="Binary Brains Logo" class="w-full h-full object-cover rounded-lg" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=BB'">
         </div>
         <div>
           <h1 class="text-base font-bold text-white tracking-wide leading-tight" id="header-app-title">BINARY BRAINS</h1>
-          <p class="text-[10px] text-cyan-400/80 font-medium tracking-wider uppercase" id="header-app-subtitle">HEALTH AI PLATFORM</p>
+          <p class="text-[10px] text-cyan-400/90 font-medium tracking-wider uppercase" id="header-app-subtitle">HEALTH AI PLATFORM</p>
         </div>
       </div>
 
@@ -141,8 +159,10 @@
       </div>
     </header>
 
+    <!-- Dynamic Main Content Container -->
     <main id="main-content" class="flex-1 px-4 py-4 mb-20 overflow-y-auto"></main>
 
+    <!-- Bottom Navbar Dock -->
     <nav class="glass-dock fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[540px] z-40 px-2 py-2">
       <div class="grid grid-cols-5 gap-1">
         <button onclick="navigateTo('home')" id="nav-item-home" class="flex flex-col items-center py-1.5 px-2 rounded-xl text-gray-400 transition-all hover:text-cyan-300">
@@ -172,6 +192,7 @@
       </div>
     </nav>
 
+    <!-- Emergency Modal -->
     <div id="emergency-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
       <div class="glass-card max-w-md w-full p-6 text-center border-red-500/40 shadow-2xl shadow-red-900/50">
         <div class="w-16 h-16 rounded-full bg-red-500/20 border border-red-500/50 flex items-center justify-center mx-auto mb-4 text-red-500 text-3xl animate-bounce">
@@ -283,7 +304,7 @@
     let hasUploadedOrScanned = false;
     let mediaStream = null;
 
-    // Default multi-item dataset (5 items)
+    // Default multi-item prescription database
     const sampleMedicines = [
       { id: 1, name: "Paracetamol", strength: "650 mg", frequency: "1 - 0 - 1 (After Meals)", duration: "5 Days", purposeEn: "Fever and body aches relief.", purposeTa: "காய்ச்சல் மற்றும் உடல் வலி நிவாரணம்.", instructionsEn: "Take after food with plenty of water.", instructionsTa: "உணவுக்குப் பின் போதுமான தண்ணீருடன் உட்கொள்ளவும்." },
       { id: 2, name: "Dolo", strength: "650 mg", frequency: "1 - 0 - 0 (SOS / As needed)", duration: "3 Days", purposeEn: "High fever spikes.", purposeTa: "அதிக காய்ச்சல் கட்டுப்படுத்த.", instructionsEn: "Maintain minimum 6 hours gap between doses.", instructionsTa: "அளவுகளுக்கு இடையே குறைந்தது 6 மணிநேர இடைவெளி இருக்க வேண்டும்." },
@@ -419,7 +440,7 @@
               <h2 class="text-base font-bold text-white">${t.scanTitle}</h2>
             </div>
 
-            <!-- Viewport Card (Matching Screenshot Frame) -->
+            <!-- Frame Card -->
             <div class="glass-card p-6 flex flex-col items-center justify-center text-center min-h-[260px] relative overflow-hidden border-cyan-500/20">
               <div id="capture-placeholder" class="space-y-3">
                 <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400">
@@ -440,7 +461,7 @@
               </div>
             </div>
 
-            <!-- Action Buttons Row -->
+            <!-- Dynamic Action Buttons Row -->
             <div class="grid grid-cols-2 gap-3">
               <button onclick="startWebcamStream()" class="btn-glow py-3 px-4 rounded-xl text-xs font-bold text-white flex items-center justify-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
@@ -454,10 +475,10 @@
               </label>
             </div>
 
-            <!-- Processing Spinner Indicator -->
+            <!-- Processing Loader -->
             <div id="ocr-loader" class="hidden glass-card p-4 text-center space-y-2">
               <div class="w-6 h-6 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto"></div>
-              <p class="text-xs text-cyan-300 font-medium">Gemini AI analyzing handwriting & medicines...</p>
+              <p class="text-xs text-cyan-300 font-medium">Gemini AI analyzing prescription handwriting...</p>
             </div>
 
             <!-- Extracted Multi-Item Container -->
@@ -544,7 +565,7 @@
               <label class="block text-xs font-bold text-cyan-300">Google Gemini Vision API Key</label>
               <input type="password" value="${geminiApiKey}" oninput="saveApiKey(this.value)" placeholder="${t.apiKeyPlaceholder}" class="w-full px-3 py-2.5 rounded-xl bg-black/40 border border-cyan-500/30 text-white text-xs outline-none focus:border-cyan-400">
               <p class="text-[10px] text-gray-400 leading-relaxed">
-                If configured, Gemini 1.5 Multimodal OCR will extract handwritten scripts. Without a key, an advanced offline medical parser with 5 multi-item tablets is active.
+                If configured, Gemini Multimodal OCR will extract handwritten scripts. Without a key, an advanced offline medical parser with 5 multi-item tablets is active.
               </p>
             </div>
           </div>
@@ -590,7 +611,6 @@
         if (loader) loader.classList.add('hidden');
         hasUploadedOrScanned = true;
 
-        // Dynamically update button labels matching screenshot feedback
         const t = getT();
         const uploadBtnSpan = document.getElementById('txt-upload-btn');
         const cameraBtnSpan = document.getElementById('txt-camera-btn');
